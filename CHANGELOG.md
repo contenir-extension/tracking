@@ -18,6 +18,8 @@ adheres to [Semantic Versioning](https://semver.org/).
 - Allows contenir/extension-api 0.3, 0.4 and 0.5, whose changes (module templates, menus, handler privileges,
   tabs on described screens and template fragments) are additions the add-on doesn't use, so the CMS can install it
   beside a module.
+- Allows contenir/extension-api 0.6, whose changes (services add-ons provide, and their context in settings
+  operations) are additions the add-on doesn't use, so the CMS can install it beside the Cloudflare add-on.
 
 ## [0.1.0] - 2026-10-20
 
