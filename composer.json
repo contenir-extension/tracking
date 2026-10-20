@@ -1,0 +1,88 @@
+{
+    "name": "contenir-extension/tracking",
+    "description": "The Tracking add-on for Contenir CMS: the Google tag, Tag Manager, the Meta pixel and LinkedIn Insight, with Consent Mode v2 and a per-environment switch. The reference add-on.",
+    "type": "contenir-extension",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "contenir",
+        "contenir-extension",
+        "analytics",
+        "tracking",
+        "consent-mode"
+    ],
+    "support": {
+        "issues": "https://github.com/contenir-extension/tracking/issues",
+        "source": "https://github.com/contenir-extension/tracking"
+    },
+    "require": {
+        "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
+        "contenir/extension-api": "^0.2",
+        "contenir/tracking": "0.1.x-dev"
+    },
+    "require-dev": {
+        "contenir/contenir-qa-tools": "0.1.x-dev",
+        "infection/infection": "^0.34.1",
+        "nyholm/psr7": "^1.8.2",
+        "phpunit/phpunit": "^11.5.42"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/contenir/contenir-tracking"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Contenir\\Extension\\Tracking\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Contenir\\Extension\\Tracking\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "boundary": "extension-boundary",
+        "check": [
+            "@cs-check",
+            "@static-analysis",
+            "@test",
+            "@test-integration",
+            "@mutation-test"
+        ],
+        "cs-check": [
+            "mago format --check",
+            "mago lint",
+            "mago guard"
+        ],
+        "cs-fix": [
+            "mago format",
+            "mago lint --fix"
+        ],
+        "static-analysis": "mago analyze",
+        "test": "phpunit --colors=always --testsuite unit",
+        "test-integration": "phpunit --colors=always --testsuite integration",
+        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
+        "mutation-test": "infection"
+    },
+    "extra": {
+        "contenir": {
+            "handle": "tracking",
+            "extension": "Contenir\\Extension\\Tracking\\TrackingExtension"
+        },
+        "branch-alias": {
+            "dev-main": "0.1.x-dev"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "8.3.99"
+        },
+        "sort-packages": true,
+        "allow-plugins": {
+            "infection/extension-installer": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
