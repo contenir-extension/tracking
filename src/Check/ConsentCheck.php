@@ -8,6 +8,7 @@ use Contenir\Extension\Api\Context\ExtensionContextInterface;
 use Contenir\Extension\Api\Diagnostic\CheckInterface;
 use Contenir\Extension\Api\Diagnostic\CheckResult;
 use Contenir\Extension\Api\Diagnostic\GuidedFix;
+use Contenir\Extension\Tracking\EnabledAddOns;
 use Contenir\Extension\Tracking\Fix\WaitForConsent;
 use Contenir\Extension\Tracking\TrackingSection;
 use Override;
@@ -15,17 +16,36 @@ use Override;
 /**
  * Warns while a site's tags run before visitors consent (TRK-1): sites that
  * tracked before the add-on keep doing so until they have a consent banner.
+ * Once the Consent add-on is enabled, its banner holds the tags back, so the
+ * check passes.
  *
  * @api
  */
 final class ConsentCheck implements CheckInterface
 {
+    /**
+     * The Consent add-on's handle.
+     */
+    public const string CONSENT = 'consent';
+
+    /**
+     * @param ?EnabledAddOns $addOns The site's enabled add-ons; read from the site when null
+     */
+    public function __construct(
+        private ?EnabledAddOns $addOns = null,
+    ) {}
+
     #[Override]
     public function check(ExtensionContextInterface $context): CheckResult
     {
         $config = TrackingSection::config($context->settings());
         if (! $config->writesTags()) {
             return CheckResult::skipped('This environment writes no tags.');
+        }
+
+        $addOns = $this->addOns ?? EnabledAddOns::fromSite($context->sitePath());
+        if ($addOns->has(self::CONSENT)) {
+            return CheckResult::success('The Consent add-on holds the tags back until visitors consent.');
         }
 
         if ($config->consent->waitForConsent) {

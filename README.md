@@ -56,9 +56,14 @@ the tags, Consent Mode and the `contenir:consent` event that a consent banner fi
 |---|---|---|
 | Tracking outside production | tracking is on in an environment other than production | guided: stop tracking here |
 | | production has tags but doesn't track | one click: track on production |
-| Tracking and consent | the tags run before visitors consent (TRK-1) | guided: wait for consent, once a banner is on the site |
+| Tracking and consent | the tags run before visitors consent (TRK-1), unless the Consent add-on is enabled | guided: wait for consent, once a banner is on the site |
 
 The environment is the CMS's `APPLICATION_ENV`. A CMS that names none is taken to be production.
+
+Once the site enables the [Consent add-on](https://github.com/contenir-extension/consent), the consent check passes:
+its banner holds the tags back, and the site adapter makes them wait for consent whatever "Wait for consent" says.
+The API doesn't say which add-ons a site has enabled, so the check reads the site's
+`config/autoload/extensions.global.php` and `extensions.local.php` itself, as the CMS does.
 
 It needs no listeners, handlers, tables or other add-ons. It stores no personal data, only IDs. The tags themselves
 send visitor data to Google, Meta and LinkedIn, which is why they wait for consent by default.
