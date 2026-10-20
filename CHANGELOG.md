@@ -6,6 +6,11 @@ adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased] - 2026-10-20
 
+### Changed
+
+- Allows contenir/extension-api 0.3 and 0.4, whose changes (module templates, menus, handler privileges and
+  tabs on described screens) are additions the add-on doesn't use, so the CMS can install it beside a module.
+
 ### Added
 
 - The Tracking settings section (Site Settings > SEO > Tracking Codes): the Google tag ID, Tag Manager container,
