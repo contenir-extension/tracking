@@ -17,7 +17,7 @@
     "require": {
         "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
         "contenir/extension-api": "^0.2 || ^0.3 || ^0.4",
-        "contenir/tracking": "0.1.x-dev"
+        "contenir/tracking": "^0.1"
     },
     "require-dev": {
         "contenir/contenir-qa-tools": "0.1.x-dev",
@@ -25,12 +25,6 @@
         "nyholm/psr7": "^1.8.2",
         "phpunit/phpunit": "^11.5.42"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/contenir/contenir-tracking"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "Contenir\\Extension\\Tracking\\": "src/"
