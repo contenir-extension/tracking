@@ -6,6 +6,11 @@ adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased] - 2026-10-21
 
+### Added
+
+- The "Tracking and consent" check passes once the site enables the Consent add-on, whose banner holds the tags back
+  (TRK-1). The enabled add-ons are read from the site's `config/autoload/extensions.*.php` (`EnabledAddOns`).
+
 ### Changed
 
 - Requires contenir/tracking `^0.1` from Packagist, where it required `0.1.x-dev` through a `vcs` repository entry.

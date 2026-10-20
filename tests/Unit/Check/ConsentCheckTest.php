@@ -7,6 +7,7 @@ namespace Contenir\Extension\Tracking\Tests\Unit\Check;
 use Contenir\Extension\Api\Diagnostic\CheckResult;
 use Contenir\Extension\Api\Diagnostic\GuidedFix;
 use Contenir\Extension\Tracking\Check\ConsentCheck;
+use Contenir\Extension\Tracking\EnabledAddOns;
 use Contenir\Extension\Tracking\Fix\WaitForConsent;
 use Contenir\Extension\Tracking\Tests\TestAsset\Settings\ArraySettings;
 use Contenir\Extension\Tracking\Tests\TestAsset\Settings\SettingsContext;
@@ -24,6 +25,18 @@ final class ConsentCheckTest extends TestCase
     }
 
     #[Test]
+    public function passesTagsHeldBackByTheConsentAddOn(): void
+    {
+        static::assertEquals(
+            CheckResult::success('The Consent add-on holds the tags back until visitors consent.'),
+            $this->check(
+                wait: false,
+                addOns: new EnabledAddOns(['tracking', 'consent']),
+            ),
+        );
+    }
+
+    #[Test]
     public function passesTagsThatWaitForConsent(): void
     {
         static::assertEquals(CheckResult::success('The tags wait for consent.'), $this->check(wait: true));
@@ -32,9 +45,19 @@ final class ConsentCheckTest extends TestCase
     #[Test]
     public function skipsAnEnvironmentThatWritesNoTags(): void
     {
-        $result = (new ConsentCheck())->check(new SettingsContext(new ArraySettings([
+        $result = (new ConsentCheck(new EnabledAddOns()))->check(new SettingsContext(new ArraySettings([
             'google_analytics' => 'G-ABC12345',
             'wait_for_consent' => false,
+        ])));
+
+        static::assertEquals(CheckResult::skipped('This environment writes no tags.'), $result);
+    }
+
+    #[Test]
+    public function skipsAnEnvironmentThatWritesNoTagsEvenWithTheConsentAddOn(): void
+    {
+        $result = (new ConsentCheck(new EnabledAddOns(['consent'])))->check(new SettingsContext(new ArraySettings([
+            'google_analytics' => 'G-ABC12345',
         ])));
 
         static::assertEquals(CheckResult::skipped('This environment writes no tags.'), $result);
@@ -58,9 +81,9 @@ final class ConsentCheckTest extends TestCase
         );
     }
 
-    private function check(bool $wait): CheckResult
+    private function check(bool $wait, EnabledAddOns $addOns = new EnabledAddOns()): CheckResult
     {
-        return (new ConsentCheck())->check(new SettingsContext(new ArraySettings([
+        return (new ConsentCheck($addOns))->check(new SettingsContext(new ArraySettings([
             'google_analytics'  => 'G-ABC12345',
             'wait_for_consent'  => $wait,
             'track_environment' => true,
