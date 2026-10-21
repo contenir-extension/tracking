@@ -4,14 +4,14 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "16b98c56262ef942ff279ca063439231",
+    "content-hash": "85d5c070f2019394e1dad7d96dbecd84",
     "packages": [
         {
             "name": "contenir/contenir-extension-api",
             "version": "v0.6.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:contenir/contenir-extension-api.git",
+                "url": "https://github.com/contenir/contenir-extension-api.git",
                 "reference": "33c8cf460ffdec41c57cd2360ab342f193baa224"
             },
             "dist": {
@@ -57,45 +57,7 @@
                     "Contenir\\Extension\\Api\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Contenir\\Extension\\Api\\Tests\\": "tests/",
-                    "Contenir\\Extension\\Example\\": "tests/Fixture/Example/src/",
-                    "Contenir\\Extension\\Example\\Tests\\": "tests/Fixture/Example/tests/"
-                }
-            },
-            "scripts": {
-                "check": [
-                    "@cs-check",
-                    "@static-analysis",
-                    "@test",
-                    "@test-integration",
-                    "@mutation-test"
-                ],
-                "cs-check": [
-                    "mago format --check",
-                    "mago lint"
-                ],
-                "cs-fix": [
-                    "mago format",
-                    "mago lint --fix"
-                ],
-                "static-analysis": [
-                    "mago analyze"
-                ],
-                "test": [
-                    "phpunit --colors=always --testsuite unit"
-                ],
-                "test-integration": [
-                    "phpunit --colors=always --testsuite integration"
-                ],
-                "test-coverage": [
-                    "phpunit --colors=always --coverage-clover clover.xml"
-                ],
-                "mutation-test": [
-                    "infection"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -119,7 +81,7 @@
             "version": "v0.2.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:contenir/contenir-tracking.git",
+                "url": "https://github.com/contenir/contenir-tracking.git",
                 "reference": "575173d4fced9b66344331fe83b2f2d05f9f69b3"
             },
             "dist": {
@@ -150,43 +112,7 @@
                     "Contenir\\Tracking\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Contenir\\Tracking\\Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "check": [
-                    "@cs-check",
-                    "@static-analysis",
-                    "@test",
-                    "@test-integration",
-                    "@mutation-test"
-                ],
-                "cs-check": [
-                    "mago format --check",
-                    "mago lint"
-                ],
-                "cs-fix": [
-                    "mago format",
-                    "mago lint --fix"
-                ],
-                "static-analysis": [
-                    "mago analyze"
-                ],
-                "test": [
-                    "phpunit --colors=always --testsuite unit"
-                ],
-                "test-integration": [
-                    "phpunit --colors=always --testsuite integration"
-                ],
-                "test-coverage": [
-                    "phpunit --colors=always --coverage-clover clover.xml"
-                ],
-                "mutation-test": [
-                    "infection"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
