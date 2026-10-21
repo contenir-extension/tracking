@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "85d5c070f2019394e1dad7d96dbecd84",
+    "content-hash": "8e2d393954b11a8ebc1b3bc934672812",
     "packages": [
         {
             "name": "contenir/contenir-extension-api",
