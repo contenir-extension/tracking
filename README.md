@@ -46,9 +46,10 @@ consent category, so a site renders and gates them along with every other add-on
 | LinkedIn Insight | marketing |
 
 Sites print them with a site adapter. On Laminas MVC that is
-[contenir/tracking-laminas-mvc](https://github.com/contenir/contenir-tracking-laminas-mvc)'s `tracking()->head()`
-and `tracking()->bodyStart()`. [contenir/tracking](https://github.com/contenir/contenir-tracking#consent) describes
-the tags, Consent Mode and the `contenir:consent` event that a consent banner fires.
+[contenir/contenir-tracking-laminas-mvc](https://github.com/contenir/contenir-tracking-laminas-mvc)'s
+`tracking()->head()` and `tracking()->bodyStart()`.
+[contenir/contenir-tracking](https://github.com/contenir/contenir-tracking#consent) describes the tags, Consent Mode
+and the `contenir:consent` event that a consent banner fires.
 
 **Two checks** in the update check:
 
@@ -71,7 +72,7 @@ send visitor data to Google, Meta and LinkedIn, which is why they wait for conse
 ## Requirements
 
 - PHP 8.3, 8.4 or 8.5
-- A CMS that hosts contenir/extension-api 0.2
+- A CMS that hosts contenir/contenir-extension-api 0.6.1 or later
 
 ## Installing
 
@@ -92,17 +93,19 @@ return ['extensions' => ['enabled' => ['tracking']]];
 Every add-on has the same shape, which the plan's council review settled:
 
 ```
-contenir/<capability>                   a framework-free library: the actual work
-contenir-extension/<handle>             the add-on: a thin CMS adapter over the library
-contenir/<capability>-laminas-mvc       site adapters, only when a public site needs them
-contenir/<capability>-mezzio
+contenir/contenir-<capability>                  a framework-free library: the actual work
+contenir-extension/<handle>                     the add-on: a thin CMS adapter over the library
+contenir/contenir-<capability>-laminas-mvc      site adapters, only when a public site needs them
+contenir/contenir-<capability>-mezzio
 ```
 
 For Tracking, that is:
 
-- [contenir/tracking](https://github.com/contenir/contenir-tracking): tags, consent, validation and rendering;
+- [contenir/contenir-tracking](https://github.com/contenir/contenir-tracking): tags, consent, validation and
+  rendering;
 - this add-on: settings, field types, scripts and checks;
-- [contenir/tracking-laminas-mvc](https://github.com/contenir/contenir-tracking-laminas-mvc): the view helper.
+- [contenir/contenir-tracking-laminas-mvc](https://github.com/contenir/contenir-tracking-laminas-mvc): the view
+  helper.
 
 Keep anything a public site also needs in the library, so the add-on and the site adapters share it rather than
 repeat it. One add-on per vendor: a service with a connection gets one add-on, whatever it touches.
@@ -138,8 +141,8 @@ tests/
     "name": "contenir-extension/tracking",
     "type": "contenir-extension",
     "require": {
-        "contenir/extension-api": "^0.2",
-        "contenir/tracking": "^0.1"
+        "contenir/contenir-extension-api": "^0.6.1",
+        "contenir/contenir-tracking": "^0.2"
     },
     "autoload": { "psr-4": { "Contenir\\Extension\\Tracking\\": "src/" } },
     "extra": {
@@ -269,7 +272,8 @@ workflow that needs any other action needs the organisation's settings changed f
 
 ### A new add-on, step by step
 
-1. Create `contenir-extension/<handle>` and, unless the work is CMS-specific, `contenir/<capability>`.
+1. Create `contenir-extension/<handle>` and, unless the work is CMS-specific, `contenir/contenir-<capability>`, a
+   package named after its repository.
 2. Copy this repository's tooling: `composer.json` (renamed), `mago.toml`, `phpunit.xml.dist`,
    `infection.json5.dist`, `.github/workflows/`, `.gitignore`, `.gitattributes` and `LICENSE.md`.
 3. Write the entry class and its declarations, and keep the work itself in the library.

@@ -14,10 +14,20 @@
         "issues": "https://github.com/contenir-extension/tracking/issues",
         "source": "https://github.com/contenir-extension/tracking"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/contenir/contenir-extension-api"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/contenir/contenir-tracking"
+        }
+    ],
     "require": {
         "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
-        "contenir/extension-api": "^0.2 || ^0.3 || ^0.4 || ^0.5 || ^0.6",
-        "contenir/tracking": "^0.1"
+        "contenir/contenir-extension-api": "^0.6.1",
+        "contenir/contenir-tracking": "^0.2"
     },
     "require-dev": {
         "contenir/contenir-qa-tools": "0.1.x-dev",
