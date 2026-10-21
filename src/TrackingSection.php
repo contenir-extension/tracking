@@ -28,7 +28,8 @@ use function explode;
 /**
  * The add-on's settings section, Tracking Codes under SEO, where the CMS's
  * Tracking plugin was. Each field stores its value under the key
- * contenir/tracking reads, so sites read the same settings the CMS saves.
+ * contenir/contenir-tracking reads, so sites read the same settings the CMS
+ * saves.
  *
  * @api
  */

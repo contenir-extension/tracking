@@ -4,7 +4,15 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project
 adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased] - 2026-10-21
+## [0.1.3] - 2026-10-21
+
+### Changed
+
+- Requires the API and the library by their new names: contenir/contenir-extension-api `^0.6.1` and
+  contenir/contenir-tracking `^0.2`. They replace contenir/extension-api and contenir/tracking, so a site never
+  installs both. 0.6.1 is the API's first release under its new name.
+
+## [0.1.2] - 2026-10-21
 
 ### Added
 
@@ -13,13 +21,18 @@ adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- Allows contenir/extension-api 0.6, whose changes (services add-ons provide, and their context in settings
+  operations) are additions the add-on doesn't use, so the CMS can install it beside the Cloudflare add-on.
+
+## [0.1.1] - 2026-10-20
+
+### Changed
+
 - Requires contenir/tracking `^0.1` from Packagist, where it required `0.1.x-dev` through a `vcs` repository entry.
   A project at stable stability can now install the add-on.
 - Allows contenir/extension-api 0.3, 0.4 and 0.5, whose changes (module templates, menus, handler privileges,
   tabs on described screens and template fragments) are additions the add-on doesn't use, so the CMS can install it
   beside a module.
-- Allows contenir/extension-api 0.6, whose changes (services add-ons provide, and their context in settings
-  operations) are additions the add-on doesn't use, so the CMS can install it beside the Cloudflare add-on.
 
 ## [0.1.0] - 2026-10-20
 
